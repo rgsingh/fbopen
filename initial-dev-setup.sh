@@ -39,22 +39,33 @@ cp elasticsearch/elasticsearch__dev.yml elasticsearch/elasticsearch-$ES_VERSION/
 # install mapper-attachments
 elasticsearch/elasticsearch-$ES_VERSION/bin/plugin -install elasticsearch/elasticsearch-mapper-attachments/2.0.0
 
-echo "Starting Elasticsearch"
-osascript<<EOF
-tell application "System Events"
-  tell process "Terminal" to keystroke "t" using command down
-end
-tell application "Terminal"
-  activate
-  do script with command "$FBOPEN_ROOT/elasticsearch/elasticsearch-$ES_VERSION/bin/elasticsearch" in window 1
-end tell
-EOF
+#echo "Starting Elasticsearch"
+#osascript<<EOF
+#tell application "System Events"
+#  tell process "Terminal" to keystroke "t" using command down
+#end
+#tell application "Terminal"
+#  activate
+#  do script with command "$FBOPEN_ROOT/elasticsearch/elasticsearch-$ES_VERSION/bin/elasticsearch" in window 1
+#end tell
+#EOF
+
+#echo "Starting Elasticsearch"
+#osascript<<EOF
+#tell application "System Events"
+#  tell process "Terminal" to keystroke "t" using command down
+#end
+#tell application "Terminal"
+#  activate
+#  do script with command "$FBOPEN_ROOT/elasticsearch/elasticsearch-$ES_VERSION/bin/elasticsearch" in window 1
+#end tell
+#EOF
 
 # API
 echo "Creating api/config.js from sample."
-cp api/config-sample_dev.js api/config.js
+cp ./api/config-sample_dev.js ./api/config.js
 mkdir -p log/
-touch log/api.log
+touch ./log/api.log
 
 if command_exists node ; then
   echo
@@ -68,32 +79,37 @@ npm install
 cd ..
 
 # init index with mappings and settings
-curl -XPUT localhost:9200/fbopen0 --data-binary @elasticsearch/init.json
+#curl -XPUT localhost:9200/fbopen0 --data-binary @elasticsearch/init.json
+
+#echo "Starting node API server"
+#osascript<<EOF
+#tell application "System Events"
+#  tell process "Terminal" to keystroke "t" using command down
+#end
+#tell application "Terminal"
+#  activate
+#  do script with command "(cd $FBOPEN_ROOT/api && node app.js)" in window 1
+#end tell
+#EOF
 
 echo "Starting node API server"
-osascript<<EOF
-tell application "System Events"
-  tell process "Terminal" to keystroke "t" using command down
-end
-tell application "Terminal"
-  activate
-  do script with command "(cd $FBOPEN_ROOT/api && node app.js)" in window 1
-end tell
-EOF
+cd ./api && node app.js &
 
-cp sample-www/config-sample_dev.js sample-www/config.js
+#cp ./sample-www/config-sample_dev.js ./sample-www/config.js
+
+#echo "Starting sample-www server"
+#osascript<<EOF
+#tell application "System Events"
+#  tell process "Terminal" to keystroke "t" using command down
+#end
+#tell application "Terminal"
+#  activate
+#  do script with command "(cd $FBOPEN_ROOT/sample-www && python -m SimpleHTTPServer)" in window 1
+#end tell
+#EOF
 
 echo "Starting sample-www server"
-osascript<<EOF
-tell application "System Events"
-  tell process "Terminal" to keystroke "t" using command down
-end
-tell application "Terminal"
-  activate
-  do script with command "(cd $FBOPEN_ROOT/sample-www && python -m SimpleHTTPServer)" in window 1
-end tell
-EOF
-
+cd ./sample-www && python -m SimpleHTTPServer &
 # Loaders
 
 
@@ -107,4 +123,4 @@ cd ../..
 
 # opens a web browser
 open http://localhost:8000
-
+echo opening web browser

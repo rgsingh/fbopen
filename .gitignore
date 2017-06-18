@@ -27,3 +27,4 @@ build
 *.env
 *.pyc
 loaders/attachments/attach*
+elasticsearch/
