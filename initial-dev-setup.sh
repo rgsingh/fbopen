@@ -50,7 +50,7 @@ elasticsearch/elasticsearch-$ES_VERSION/bin/plugin -install elasticsearch/elasti
 #end tell
 #EOF
 
-#echo "Starting Elasticsearch"
+echo "Starting Elasticsearch"
 #osascript<<EOF
 #tell application "System Events"
 #  tell process "Terminal" to keystroke "t" using command down
@@ -60,6 +60,8 @@ elasticsearch/elasticsearch-$ES_VERSION/bin/plugin -install elasticsearch/elasti
 #  do script with command "$FBOPEN_ROOT/elasticsearch/elasticsearch-$ES_VERSION/bin/elasticsearch" in window 1
 #end tell
 #EOF
+
+$FBOPEN_ROOT/elasticsearch/elasticsearch-$ES_VERSION/bin/elasticsearch &
 
 # API
 echo "Creating api/config.js from sample."

@@ -16,7 +16,7 @@ config.app.require_http_basic_auth = false;
 
 // http
 config.app.listen_http = true;
-config.app.port = process.env.FBOPEN_API_PORT || 3000;
+config.app.port = process.env.FBOPEN_API_PORT || 3100;
 
 // https
 config.app.listen_https = false;
