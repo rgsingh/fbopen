@@ -75,7 +75,8 @@ cat $nightly_download_file.json | node $PWD/process_notices.js > $prepped_json_n
 # extract links
 echo "Extracting links"
 nightly_links_file=$workfiles_dir/links.txt
-cat $prepped_json_notices_file | json -ga listing_url > $nightly_links_file
+#cat $prepped_json_notices_file | json -ga listing_url > $nightly_links_file
+cat $prepped_json_notices_file | jq '.listing_url' > $nightly_links_file
 
 echo "Converting notices to Elasticsearch bulk format"
 # convert notices to Elasticsearch's bulk format, adding -a flag to append descriptions in MODs

@@ -117,10 +117,12 @@ cd ./sample-www && python -m SimpleHTTPServer &
 
 ## bids.state.gov
 #npm install loaders/bids.state.gov/
-cd loaders/bids.state.gov
+#cd loaders/bids.state.gov
+cd loaders/fbo.gov
 npm install
 (cd ../common/ && npm install)
-./bids-nightly.sh
+#./bids-nightly.sh
+./fbo-nightly.sh
 cd ../..
 
 # opens a web browser

@@ -24,6 +24,7 @@
     "express-winston": "*",
     "http-auth": "*",
     "jade": "*",
+    "json": "^9.0.6",
     "method-override": "^2.3.5",
     "morgan": "",
     "raven": "^0.8.1",
