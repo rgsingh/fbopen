@@ -74,6 +74,8 @@ var bulkify_data = function (data) {
     lines = [];
     if (is_mod) {
 
+        // This fails when bulk updating against Elasticsearch 1.3.1
+        // It results in: {"error":"ActionRequestValidationException[Validation Failed: 1: script or doc is missing;]","status":500}
         if (append_description) {
             description = _delete(data, 'description');
             // we may need to figure out how to bypass this for grants
